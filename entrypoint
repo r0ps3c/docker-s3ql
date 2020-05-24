@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -z "${MNTPOINT}" ] || [ -z "${SURL}" ]
+then
+	echo "missing \$MNTPOINT or \$SURL"
+	exit 1
+fi
+
+if ! mount.s3ql --fg ${SURL} ${MNTPOINT}
+then
+	echo "unable to mount fs" >& 2
+	exit 1
+fi
