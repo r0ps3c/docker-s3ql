@@ -22,7 +22,8 @@ RUN \
 WORKDIR $FILE
 RUN \
 	python3 setup.py build_ext --inplace && \
- 	python3 setup.py install --user
+	python3 setup.py install --user && \
+	cp contrib/expire_backups.py /root/.local/bin/
 
 FROM python:alpine
 RUN apk --no-cache add fuse3 psmisc
