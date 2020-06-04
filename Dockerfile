@@ -23,6 +23,8 @@ WORKDIR $FILE
 RUN \
 	python3 setup.py build_ext --inplace && \
 	python3 setup.py install --user && \
+	curl -sfL https://codeload.github.com/s3ql/s3ql/zip/master -o /tmp/s3ql.zip && \
+	unzip -p /tmp/s3ql.zip s3ql-master/contrib/expire_backups.py > contrib/expire_backups.py && \
 	cp contrib/expire_backups.py /root/.local/bin/
 
 FROM python:alpine
