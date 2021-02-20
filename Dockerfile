@@ -1,6 +1,6 @@
-ARG S3QL_VERSION="3.7.0"
+ARG S3QL_VERSION="3.7.1b1"
 ARG FILE="s3ql-$S3QL_VERSION"
-ARG URL="https://github.com/s3ql/s3ql/releases/download/release-$S3QL_VERSION/$FILE.tar.bz2"
+ARG URL="https://github.com/r0ps3c/s3ql/releases/download/release-$S3QL_VERSION/$FILE.tar.bz2"
 ARG PIPS="cryptography defusedxml requests apsw>=3.7.0 trio>=0.9 pyfuse3>=3.0,<4.0 dugong>=3.4,<4.0 google-auth google-auth-oauthlib wheel sphinx"
 
 FROM alpine AS build
@@ -16,12 +16,9 @@ RUN \
 RUN \
 	pip3 install --user --ignore-installed $PIPS
 
-RUN gpg2 --batch --keyserver keys.gnupg.net --recv-key 0xD113FCAC3C4E599F
-
 RUN \
 	set -x; \
     	curl -sfL "$URL" -o "/tmp/$FILE.tar.bz2" && \
- 	curl -sfL "$URL.asc" | gpg2 --batch --verify - "/tmp/$FILE.tar.bz2" && \
  	tar -xjf "/tmp/$FILE.tar.bz2"
 
 WORKDIR $FILE
