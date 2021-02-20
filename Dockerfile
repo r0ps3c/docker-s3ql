@@ -1,7 +1,7 @@
-ARG S3QL_VERSION="3.6.0"
+ARG S3QL_VERSION="3.7.0"
 ARG FILE="s3ql-$S3QL_VERSION"
 ARG URL="https://github.com/s3ql/s3ql/releases/download/release-$S3QL_VERSION/$FILE.tar.bz2"
-ARG PIPS="cryptography defusedxml requests apsw>=3.7.0 trio>=0.9 pyfuse3>=3.0,<4.0 dugong>=3.4,<4.0 google-auth google-auth-oauthlib wheel"
+ARG PIPS="cryptography defusedxml requests apsw>=3.7.0 trio>=0.9 pyfuse3>=3.0,<4.0 dugong>=3.4,<4.0 google-auth google-auth-oauthlib wheel sphinx"
 
 FROM alpine AS build
 
@@ -12,7 +12,7 @@ ARG FILE
 ARG S3QL_VERSION
 
 RUN \
-	apk --no-cache add curl gnupg jq bzip2 g++ make pkgconfig fuse3-dev sqlite-dev libffi-dev openssl-dev python3-dev py3-pip
+	apk --no-cache add curl gnupg jq bzip2 g++ make pkgconfig fuse3-dev sqlite-dev libffi-dev openssl-dev python3-dev py3-pip rust cargo cython texlive texmf-dist-latexextra
 RUN \
 	pip3 install --user --ignore-installed $PIPS
 
