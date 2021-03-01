@@ -27,7 +27,7 @@ RUN \
 
 FROM alpine
 ARG FILE
-RUN apk --no-cache add fuse3 psmisc py3-pip
+RUN apk --no-cache add fuse3 psmisc py3-pip bash
 COPY --from=build /tmp/wheels /tmp/wheels
 RUN \
 	pip install --find-links /tmp/wheels s3ql && \
