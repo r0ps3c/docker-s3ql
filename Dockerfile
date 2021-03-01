@@ -12,7 +12,7 @@ ARG FILE
 ARG S3QL_VERSION
 
 RUN \
-	apk --no-cache add curl gnupg jq bzip2 g++ make pkgconfig fuse3-dev sqlite-dev libffi-dev openssl-dev python3-dev py3-pip rust cargo cython texlive texmf-dist-latexextra
+	apk --no-cache add curl gnupg jq bzip2 g++ make pkgconfig fuse3-dev sqlite-dev libffi-dev openssl-dev python3-dev py3-pip rust cargo cython texlive texmf-dist-latexextra bash
 RUN \
 	pip3 install --user --ignore-installed $PIPS
 
