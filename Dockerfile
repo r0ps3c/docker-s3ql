@@ -23,6 +23,7 @@ RUN \
  	curl -sfL "$URL.asc" | gpg2 --batch --verify - "/tmp/$FILE" && \
  	tar -xf "/tmp/$FILE" && \
 	cd s3ql-$S3QL_VERSION && \
+	curl -s https://raw.githubusercontent.com/s3ql/s3ql/master/contrib/expire_backups.py > contrib/expire_backups.py && \
 	pip wheel -w /tmp/wheels .
 
 FROM alpine
