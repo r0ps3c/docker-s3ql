@@ -1,7 +1,7 @@
 ARG S3QL_VERSION="3.8.1"
 ARG FILE="s3ql-$S3QL_VERSION.tar.gz"
 ARG URL="https://github.com/s3ql/s3ql/releases/download/release-$S3QL_VERSION/$FILE"
-ARG PIPS="cryptography defusedxml requests apsw>=3.7.0 trio>=0.9 pyfuse3>=3.0,<4.0 dugong>=3.4,<4.0 google-auth google-auth-oauthlib wheel sphinx"
+ARG PIPS="cryptography defusedxml requests apsw>=3.7.0 trio>=0.15 pyfuse3>=3.2.0,<4.0 dugong>=3.4,<4.0 google-auth google-auth-oauthlib wheel sphinx"
 
 FROM alpine AS build
 
