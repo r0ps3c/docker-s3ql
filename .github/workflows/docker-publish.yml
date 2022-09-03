@@ -15,6 +15,7 @@ on:
   pull_request:
     branches: [ master, v3.8.1-mpc.1 ]
   workflow_dispatch:
+    branches: [ master, v3.8.1-mpc.1 ]
 
 env:
   # Use docker.io for Docker Hub if empty
