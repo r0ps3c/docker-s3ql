@@ -5,8 +5,7 @@ on:
     - cron: '43 */27 * * *'
   push:
     branches: [ master ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    tags: [ 'v*' ]
   pull_request:
   workflow_dispatch:
 
