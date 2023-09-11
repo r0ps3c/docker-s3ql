@@ -12,7 +12,8 @@ jobs:
     steps:
       - id: get-tag
         uses: proudust/gh-describe
-        commitish: ${{ matrix.branch }}
+        with:
+          commitish: ${{ matrix.branch }}
 
       - id: run-build
         uses: benc-uk/workflow-dispatch@v1
