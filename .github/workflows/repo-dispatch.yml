@@ -1,0 +1,25 @@
+name: repo-dispatch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    strategy:
+      matrix:
+        branch: ['stable']
+    runs-on: ubuntu-latest
+    steps:
+      - id: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+      - id: get-tag
+        run: |
+          echo "TAG=$(git describe --abbrev=0)" >> $GITHUB_OUTPUT
+
+      - id: run-build
+        uses: benc-uk/workflow-dispatch
+        with:
+          workflow: docker-build-publish
+          ref: ${{steps.get-tag.outputs.TAG}}
