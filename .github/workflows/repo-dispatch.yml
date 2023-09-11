@@ -16,7 +16,7 @@ jobs:
           ref: ${{ matrix.branch }}
       - id: get-tag
         run: |
-          echo "TAG=$(git describe --abbrev=0)" >> $GITHUB_OUTPUT
+          echo "TAG=$(git -C ${GITHUB_WORKSPACE} describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
         uses: benc-uk/workflow-dispatch@v1
