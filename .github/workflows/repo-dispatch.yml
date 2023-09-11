@@ -19,7 +19,7 @@ jobs:
           echo "TAG=$(git describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
-        uses: benc-uk/workflow-dispatch
+        uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: docker-build-publish
           ref: ${{steps.get-tag.outputs.TAG}}
