@@ -13,7 +13,8 @@ jobs:
       - id: get-tag
         uses: proudust/gh-describe@v1
         with:
-          commitish: ${{ matrix.branch }}
+          commit-ish: ${{ matrix.branch }}
+          match: '^v\d+(\.\d+)*$'
 
       - id: run-build
         uses: benc-uk/workflow-dispatch@v1
