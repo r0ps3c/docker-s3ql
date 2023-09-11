@@ -10,14 +10,20 @@ jobs:
         branch: ['stable']
     runs-on: ubuntu-latest
     steps:
-      - id: get-tag
-        uses: proudust/gh-describe@v1
+      - id: checkout
+        uses: actions/checkout@v4
         with:
-          commit-ish: ${{ matrix.branch }}
-          match: '^v\d+(\.\d+)*$'
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+      - id: get-tag
+        run: |
+          ls -l ${GITHUB_WORKSPACE}
+          git -C ${GITHUB_WORKSPACE} log
+          echo "TAG=$(git -C ${GITHUB_WORKSPACE} describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
         uses: benc-uk/workflow-dispatch@v1
+        if: steps.get-tag.outputs.TAG != ''
         with:
           workflow: docker-build-publish
-          ref: ${{steps.get-tag.outputs.tag}}
+          ref: ${{steps.get-tag.outputs.TAG}}
