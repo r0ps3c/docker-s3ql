@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: get-tag
-        uses: proudust/gh-describe
+        uses: proudust/gh-describe@v1
         with:
           commitish: ${{ matrix.branch }}
 
