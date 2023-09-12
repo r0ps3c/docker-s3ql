@@ -17,8 +17,6 @@ jobs:
           fetch-depth: 0
       - id: get-tag
         run: |
-          ls -l ${GITHUB_WORKSPACE}
-          git -C ${GITHUB_WORKSPACE} log
           echo "TAG=$(git -C ${GITHUB_WORKSPACE} describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
