@@ -28,5 +28,5 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow: 'docker-publish.yml',
-                ref: ${{steps.get-tag.outputs.TAG}},
+                ref: '${{ steps.get-tag.outputs.TAG }}',
             })
