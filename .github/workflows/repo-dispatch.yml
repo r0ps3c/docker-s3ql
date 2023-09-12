@@ -20,8 +20,13 @@ jobs:
           echo "TAG=$(git -C ${GITHUB_WORKSPACE} describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
-        uses: benc-uk/workflow-dispatch@v1
+        uses: actions/github-script@v6
         if: steps.get-tag.outputs.TAG != ''
         with:
-          workflow: docker-build-publish
-          ref: ${{steps.get-tag.outputs.TAG}}
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow: 'docker-publish.yml',
+                ref: ${{steps.get-tag.outputs.TAG}},
+            })
