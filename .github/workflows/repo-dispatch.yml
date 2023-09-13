@@ -14,12 +14,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ matrix.branch }}
+          fetch-depth: 0
       - id: get-tag
         run: |
           echo "TAG=$(git -C ${GITHUB_WORKSPACE} describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
-        uses: benc-uk/workflow-dispatch@v1
+        uses: actions/github-script@v6
+        if: steps.get-tag.outputs.TAG != ''
         with:
-          workflow: docker-build-publish
-          ref: ${{steps.get-tag.outputs.TAG}}
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'docker-publish.yml',
+                ref: '${{ steps.get-tag.outputs.TAG }}',
+            })
