@@ -8,7 +8,7 @@ jobs:
   dispatch:
     strategy:
       matrix:
-        branch: ['stable']
+        branch: ['master']
     runs-on: ubuntu-latest
     steps:
       - id: checkout
