@@ -41,8 +41,7 @@ jobs:
 
       - name: Test Container
         run: |
-          IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n 1)
-          docker run --rm -v ${{github.workspace }}/tests/stest.sh:/entrypoint --device=/dev/fuse --cap-add=SYS_ADMIN --security-opt apparmor=unconfined "${{ steps.meta.outputs.tags }}"
+          docker run --rm -v ${{github.workspace }}/tests/stest.sh:/entrypoint --device=/dev/fuse --cap-add=SYS_ADMIN --security-opt apparmor=unconfined "$DOCKER_METADATA_OUTPUT_TAGS"
 
       - name: Push Docker image
         if: ${{ github.event_name != 'pull_request' }}
