@@ -41,7 +41,7 @@ jobs:
 
       - name: Test Container
         run: |
-          docker run --rm -v ${{github.workspace }}/tests/stest.sh:/entrypoint --device=/dev/fuse --cap-add=SYS_ADMIN --security-opt apparmor=unconfined "${{ steps.meta.outputs.digest }}"
+          docker run --rm -v ${{github.workspace }}/tests/stest.sh:/entrypoint --device=/dev/fuse --cap-add=SYS_ADMIN --security-opt apparmor=unconfined "${{ steps.meta.outputs.imageid }}"
 
       - name: Push Docker image
         if: ${{ github.event_name != 'pull_request' }}
