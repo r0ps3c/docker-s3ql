@@ -23,6 +23,9 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Extract Docker metadata
         id: meta
