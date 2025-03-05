@@ -44,7 +44,7 @@ jobs:
 
       - name: Test Container
         run: |
-          IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | awk '{print $1}')
+          IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | head -n1 | tr -d '[:space:]')
           docker run --rm -v ${{github.workspace }}/tests/stest.sh:/entrypoint:ro --device=/dev/fuse --cap-add=SYS_ADMIN --security-opt apparmor=unconfined "${IMAGE_TAG}"
 
       - name: Push Docker image
