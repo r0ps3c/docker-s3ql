@@ -23,7 +23,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -45,7 +45,6 @@ jobs:
       - name: Test Container
         run: |
           IMAGE_TAG=$(echo "${{ steps.meta.outputs.tags }}" | awk '{print $1}')
-          ls -laR ${{github.workspace}}
           docker run --rm -v ${{github.workspace }}/tests/stest.sh:/entrypoint:ro --device=/dev/fuse --cap-add=SYS_ADMIN --security-opt apparmor=unconfined "${IMAGE_TAG}"
 
       - name: Push Docker image
