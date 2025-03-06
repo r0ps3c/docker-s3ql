@@ -27,7 +27,7 @@ RUN \
 
 FROM alpine
 ARG S3QL_VERSION
-RUN apk --no-cache add fuse3 psmisc py3-pip bash findutils attr
+RUN apk --no-cache add fuse3 psmisc py3-pip bash findutils attr moreutils
 COPY --from=build /tmp/wheels /tmp/wheels
 RUN \
 	pip install --break-system-packages --find-links /tmp/wheels s3ql && \
