@@ -21,7 +21,7 @@ jobs:
           echo "TAG=$(git -C ${GITHUB_WORKSPACE} describe --abbrev=0)" >> $GITHUB_OUTPUT
 
       - id: run-build
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         if: steps.get-tag.outputs.TAG != ''
         with:
           script: |
