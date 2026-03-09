@@ -35,7 +35,7 @@ jobs:
 
       - name: Build Docker image
         id: build
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           push: false
           load: true
@@ -49,7 +49,7 @@ jobs:
 
       - name: Push Docker image
         if: ${{ github.event_name != 'pull_request' }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
